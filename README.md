@@ -68,3 +68,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Cypress instructions
+- run the cypress commands
+	- `npm install cypress`
+	- `npx cypress run`
+- fix the linting errors
+	- `npm install eslint-plugin-cypress --save-dev`
+	- `echo '{"extends": ["plugin:cypress/recommended"]}' >> cypress/.eslintrc.json`
+- set the origin
+	- in cypress.config.js
+
+- Test Homepage Loads
+	- `touch cypres/e2e/home_page.cy.js`
+
+- Add screenshots/UI Regression tests with Percy
+	- signup for a free Percy account
+	- create a new project
+	- copy your token
+	- run Percy commands
+		- `npm install --save-dev @percy/cli @percy/cypress`
+		- `echo -e "\nimport '@percy/cypress'" >> cypress/support/e2e.js`
