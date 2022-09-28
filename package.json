@@ -37,6 +37,8 @@
     ]
   },
   "devDependencies": {
+    "@percy/cli": "^1.10.4",
+    "@percy/cypress": "^3.1.2",
     "cypress": "^10.9.0",
     "eslint-plugin-cypress": "^2.12.1"
   }
