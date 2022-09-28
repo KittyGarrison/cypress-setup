@@ -8,8 +8,12 @@ function handleChange(e) {
 }
 function handleSubmit(e) {
   e.preventDefault();
-  props.addTask(name);
-  setName("");
+  if (name) {
+    props.addTask(name);
+    setName("");
+  } else {
+  alert("enter a task")
+  }
 }
   return (
     <form onSubmit={handleSubmit}>
