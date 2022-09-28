@@ -70,17 +70,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ## Cypress instructions
+Get the app running
+- do your regular npm install
 - run the cypress commands
 	- `npm install cypress`
-	- `npx cypress run`
+	- `npx cypress open`
+    - select e2e
+    - continue
+    - create empty spec
+
 - fix the linting errors
 	- `npm install eslint-plugin-cypress --save-dev`
 	- `echo '{"extends": ["plugin:cypress/recommended"]}' >> cypress/.eslintrc.json`
 - set the origin
 	- in cypress.config.js
-
+    - add baseUrl: 
+- start the server
 - Test Homepage Loads
-	- `touch cypres/e2e/home_page.cy.js`
+	- `touch cypress/e2e/home_page.cy.js`
+    - open that file in your IDE
 
 - Add screenshots/UI Regression tests with Percy
 	- signup for a free Percy account
