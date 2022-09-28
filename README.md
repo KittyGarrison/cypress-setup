@@ -34,7 +34,7 @@ You may also see any lint errors in the console.
 - `$ echo '{"extends": ["plugin:cypress/recommended"]}' >> cypress/.eslintrc.json`
 ### set the origin
 - in cypress.config.js
- - in the defineConfig method, under the e2e object add `baseUrl: 'http://localhost:3000'`
+ - in the defineConfig method, under the e2e object add `baseUrl: 'http://localhost:3000,'`
 ### Test Homepage Loads
  - open home_page.cy.js in your text editor and paste in our first test
  ```
