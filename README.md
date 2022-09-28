@@ -1,6 +1,3 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -14,86 +11,51 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ## Cypress instructions
-Get the app running
-- do your regular npm install
-- run the cypress commands
-	- `npm install cypress`
-	- `npx cypress open`
+### Prerequisites:
+ - signup for a free Percy account at https://percy.io/
+- create a new project
+- copy your token into a global variable called 'PERCY_TOKEN'
+### Get the app running
+- do your regular `$ npm install`
+- start the server `$ npm start`
+- run the cypress commands and create your first spec
+	- `$ npm install cypress`
+	- `$ npx cypress open`
     - select e2e
     - continue
     - create empty spec
+    - name it `home_page.cy.js`
 
-- fix the linting errors
-	- `npm install eslint-plugin-cypress --save-dev`
-	- `echo '{"extends": ["plugin:cypress/recommended"]}' >> cypress/.eslintrc.json`
-- set the origin
-	- in cypress.config.js
-    - add baseUrl: 
-- start the server
-- Test Homepage Loads
-	- `touch cypress/e2e/home_page.cy.js`
-    - open that file in your IDE
+### fix the linting errors
+- `$ npm install eslint-plugin-cypress --save-dev`
+- `$ echo '{"extends": ["plugin:cypress/recommended"]}' >> cypress/.eslintrc.json`
+### set the origin
+- in cypress.config.js
+ - in the defineConfig method, under the e2e object add `baseUrl: 'http://localhost:3000'`
+### Test Homepage Loads
+ - open home_page.cy.js in your text editor and paste in our first test
+ ```
+ describe('The Home Page', () => {
+    it('successfully loads', ()=> {
+        cy.intercept('GET', '/').as('homePageCall')
+        cy.visit('/')
+        cy.wait('@homePageCall').then(({response}) => {
+          expect(response.statusCode).to.eq(200)
+        })
+    })
+})
+```
+- return to the Cypress app and click on your spec to run it
+- it should pass
+- close the runner
 
-- Add screenshots/UI Regression tests with Percy
-	- signup for a free Percy account
-	- create a new project
-	- copy your token
-	- run Percy commands
-		- `npm install --save-dev @percy/cli @percy/cypress`
-		- `echo -e "\nimport '@percy/cypress'" >> cypress/support/e2e.js`
+### Add screenshots/UI Regression tests with Percy
+- run Percy commands
+	- `$ npm install --save-dev @percy/cli @percy/cypress`
+	- `$ echo -e "\nimport '@percy/cypress'" >> cypress/support/e2e.js`
+
+- use percy to run cypress
+    - `$ npx percy exec -- cypress run `
